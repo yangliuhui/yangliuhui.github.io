@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程:https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接:https://trac.ffmpeg.org/wiki/CompilationGu">
+<meta name="description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程: https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接: https://trac.ffmpeg.org/wiki/Compilation">
 <meta name="keywords" content="FFmpeg">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Ubuntu16.04编译FFmpeg3.4">
 <meta property="og:url" content="http://yoursite.com/2017/10/17/在Ubuntu16-04编译FFmpeg3-4/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程:https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接:https://trac.ffmpeg.org/wiki/CompilationGu">
-<meta property="og:updated_time" content="2017-10-17T14:51:06.000Z">
+<meta property="og:site_name" content="独树山">
+<meta property="og:description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程: https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接: https://trac.ffmpeg.org/wiki/Compilation">
+<meta property="og:updated_time" content="2017-10-17T17:08:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Ubuntu16.04编译FFmpeg3.4">
-<meta name="twitter:description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程:https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接:https://trac.ffmpeg.org/wiki/CompilationGu">
+<meta name="twitter:description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程: https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接: https://trac.ffmpeg.org/wiki/Compilation">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>在Ubuntu16.04编译FFmpeg3.4 | Hexo</title>
+  <title>在Ubuntu16.04编译FFmpeg3.4 | 独树山</title>
   
 
 
@@ -155,7 +155,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">独树山</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -241,7 +241,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="独树山">
     </span>
 
     
@@ -300,10 +300,12 @@
 
       
         <p>本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。</p>
-<p>廖雪峰教程:<a href="https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000" target="_blank" rel="external">https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000</a></p>
-<p>官方链接:<a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu" target="_blank" rel="external">https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu</a></p>
+<p>廖雪峰教程:</p>
+<p><a href="https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000" target="_blank" rel="external">https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000</a></p>
+<p>官方链接:</p>
+<p><a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu" target="_blank" rel="external">https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu</a></p>
 <p>废话不多说，直接开始。</p>
-<p><strong>注意</strong>：下面的所有命令都是在超级管理员下进行，或者在普通用户下，所有命令的前面都需要加<code>root</code></p>
+<p><strong>注意</strong>：下面的所有命令都是在超级管理员下进行，或者在普通用户下，所有命令的前面都需要加<code>sudo</code></p>
 <h3 id="升级系统"><a href="#升级系统" class="headerlink" title="升级系统"></a>升级系统</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> apt update</div><div class="line"><span class="meta">#</span> apt upgrade</div></pre></td></tr></table></figure>
 <h3 id="安装以下安装包"><a href="#安装以下安装包" class="headerlink" title="安装以下安装包"></a>安装以下安装包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> apt install autoconf automake build-essential libass-dev libfreetype6-dev  libtheora-dev libtool libvorbis-dev pkg-config texinfo zlib1g-dev unzip cmake yasm libx264-dev libmp3lame-dev libopus-dev libsdl2-dev libva-dev libvdpau-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev</div></pre></td></tr></table></figure>
 <h3 id="编译依赖库"><a href="#编译依赖库" class="headerlink" title="编译依赖库"></a>编译依赖库</h3><p>编译之前，先在<code>/opt</code>手动创建三个文件夹，</p>
