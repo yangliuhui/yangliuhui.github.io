@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="独树山">
 <meta property="og:description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程: https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接: https://trac.ffmpeg.org/wiki/Compilation">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T04:56:05.000Z">
+<meta property="og:updated_time" content="2017-10-20T04:57:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Ubuntu16.04编译FFmpeg3.4">
 <meta name="twitter:description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程: https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接: https://trac.ffmpeg.org/wiki/Compilation">
@@ -311,7 +311,7 @@
 <h3 id="下载编译FFmpeg"><a href="#下载编译FFmpeg" class="headerlink" title="下载编译FFmpeg"></a>下载编译FFmpeg</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">wget http://ffmpeg.org/releases/ffmpeg-3.4.tar.bz2 </div><div class="line"></div><div class="line">tar xjvf ffmpeg-3.4.tar.bz2</div><div class="line"></div><div class="line">cd ffmpeg-3.4</div><div class="line"></div><div class="line">./configure \                                                 </div><div class="line">  --enable-shared \</div><div class="line">  --enable-gpl \</div><div class="line">  --enable-libass \</div><div class="line">  --enable-libfdk-aac \</div><div class="line">  --enable-libfreetype \</div><div class="line">  --enable-libmp3lame \</div><div class="line">  --enable-libopus \</div><div class="line">  --enable-libtheora \</div><div class="line">  --enable-libvorbis \</div><div class="line">  --enable-libvpx \</div><div class="line">  --enable-libx264 \</div><div class="line">  --enable-libx265 \</div><div class="line">  --enable-nonfree</div><div class="line"></div><div class="line">make</div><div class="line"></div><div class="line">sudo make install</div></pre></td></tr></table></figure>
 <p>至此，编译全部完成。</p>
 <hr>
-<p>ffmpeg生成的lib以及include路径<code>/usr/local/</code>内，后续将会介绍FFmpeg的简单实用。</p>
+<p>ffmpeg生成的lib以及include路径<code>/usr/local/</code>内，后续将会介绍FFmpeg的简单使用。</p>
 
       
     </div>
