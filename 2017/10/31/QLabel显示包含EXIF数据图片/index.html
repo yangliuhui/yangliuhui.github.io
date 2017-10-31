@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Qt,Linux," />
+  <meta name="keywords" content="Qt," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="ubuntu利用apt install下载的Qt版本不是最新版本，在官网下载最新版本后安装后，发现无法正常调用qmake,网上查询发现需要修改默认的配置文件，否则系统在调用某些qt命令行程序仍会调用旧版Qt。 需要修改/usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf文件。 将default.conf的文件内容修改为自己安装的Qt">
-<meta name="keywords" content="Qt,Linux">
+<meta name="description" content="Qt利用QLabel显示图片的默认操作是 12QImage image.load(&quot;test.jpeg&quot;);label.setPixmap(QPixmap::fromImage(image)); 但是在打开包含EXIF信息的图片时候（发生在用照相机等拍摄的图片）等，出现了图片发生了旋转的问题，原本的图片发生了90度的旋转。 那是因为在打开图片时候，QImage::load没有根据图片中EXIF信息">
+<meta name="keywords" content="Qt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu安装官网新版Qt5.9.1配置">
-<meta property="og:url" content="http://yoursite.com/2017/10/20/ubuntu安装官网新版Qt5-9-1配置/index.html">
+<meta property="og:title" content="QLabel显示包含EXIF数据图片">
+<meta property="og:url" content="http://yoursite.com/2017/10/31/QLabel显示包含EXIF数据图片/index.html">
 <meta property="og:site_name" content="独树山">
-<meta property="og:description" content="ubuntu利用apt install下载的Qt版本不是最新版本，在官网下载最新版本后安装后，发现无法正常调用qmake,网上查询发现需要修改默认的配置文件，否则系统在调用某些qt命令行程序仍会调用旧版Qt。 需要修改/usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf文件。 将default.conf的文件内容修改为自己安装的Qt">
+<meta property="og:description" content="Qt利用QLabel显示图片的默认操作是 12QImage image.load(&quot;test.jpeg&quot;);label.setPixmap(QPixmap::fromImage(image)); 但是在打开包含EXIF信息的图片时候（发生在用照相机等拍摄的图片）等，出现了图片发生了旋转的问题，原本的图片发生了90度的旋转。 那是因为在打开图片时候，QImage::load没有根据图片中EXIF信息">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T02:03:19.000Z">
+<meta property="og:updated_time" content="2017-10-31T03:45:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu安装官网新版Qt5.9.1配置">
-<meta name="twitter:description" content="ubuntu利用apt install下载的Qt版本不是最新版本，在官网下载最新版本后安装后，发现无法正常调用qmake,网上查询发现需要修改默认的配置文件，否则系统在调用某些qt命令行程序仍会调用旧版Qt。 需要修改/usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf文件。 将default.conf的文件内容修改为自己安装的Qt">
+<meta name="twitter:title" content="QLabel显示包含EXIF数据图片">
+<meta name="twitter:description" content="Qt利用QLabel显示图片的默认操作是 12QImage image.load(&quot;test.jpeg&quot;);label.setPixmap(QPixmap::fromImage(image)); 但是在打开包含EXIF信息的图片时候（发生在用照相机等拍摄的图片）等，出现了图片发生了旋转的问题，原本的图片发生了90度的旋转。 那是因为在打开图片时候，QImage::load没有根据图片中EXIF信息">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/20/ubuntu安装官网新版Qt5-9-1配置/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/31/QLabel显示包含EXIF数据图片/"/>
 
 
 
 
 
-  <title>ubuntu安装官网新版Qt5.9.1配置 | 独树山</title>
+  <title>QLabel显示包含EXIF数据图片 | 独树山</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/20/ubuntu安装官网新版Qt5-9-1配置/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/31/QLabel显示包含EXIF数据图片/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ubuntu安装官网新版Qt5.9.1配置</h1>
+          <h1 class="post-title" itemprop="name headline">QLabel显示包含EXIF数据图片</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T10:00:19+08:00">
-                2017-10-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-31T11:33:20+08:00">
+                2017-10-31
               </time>
             
 
@@ -300,11 +300,11 @@
       
 
       
-        <p>ubuntu利用apt install下载的Qt版本不是最新版本，在官网下载最新版本后安装后，发现无法正常调用qmake,网上查询发现需要修改默认的配置文件，否则系统在调用某些qt命令行程序仍会调用旧版Qt。</p>
-<p>需要修改<code>/usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf</code>文件。</p>
-<p>将<code>default.conf</code>的文件内容修改为自己安装的Qt路径，例如我安装的路径为<code>/home/liuhui/Qt5.9.1</code>,修改则如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/home/liuhui/Qt5.9.1/5.9.1/gcc_64/bin</div><div class="line">/home/liuhui/Qt5.9.1/5.9.1</div></pre></td></tr></table></figure>
-<p>修改完毕，即可正常调用qmake。</p>
+        <p>Qt利用QLabel显示图片的默认操作是</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">QImage image.load(<span class="string">"test.jpeg"</span>);</div><div class="line">label.setPixmap(QPixmap::fromImage(image));</div></pre></td></tr></table></figure>
+<p>但是在打开包含EXIF信息的图片时候（发生在用照相机等拍摄的图片）等，出现了图片发生了旋转的问题，原本的图片发生了90度的旋转。</p>
+<p>那是因为在打开图片时候，QImage::load没有根据图片中EXIF信息中的<code>Orientation</code>调整图片角度，打开包含EXIF数据的图片需要用<code>QImageReader</code>类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function">QImageReader <span class="title">reader</span><span class="params">(<span class="string">"test.jpeg"</span>)</span></span>;</div><div class="line">reader.setAutoTransform(<span class="literal">true</span>);	<span class="comment">// 自动调整图片角度</span></div><div class="line">QImage image = reader.read();</div><div class="line">label-&gt;setPixmap(QPixmap::fromImage(image));</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -324,8 +324,6 @@
           
             <a href="/tags/Qt/" rel="tag"># Qt</a>
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
         </div>
       
 
@@ -337,8 +335,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/17/在Ubuntu16-04编译FFmpeg3-4/" rel="next" title="在Ubuntu16.04编译FFmpeg3.4">
-                <i class="fa fa-chevron-left"></i> 在Ubuntu16.04编译FFmpeg3.4
+              <a href="/2017/10/27/Qt程序启动动画/" rel="next" title="Qt程序启动动画">
+                <i class="fa fa-chevron-left"></i> Qt程序启动动画
               </a>
             
           </div>
@@ -346,10 +344,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/24/Qt可隐藏式抽屉界面/" rel="prev" title="Qt可隐藏式抽屉界面">
-                Qt可隐藏式抽屉界面 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
