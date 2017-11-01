@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="独树山">
 <meta property="og:description" content="ubuntu利用apt install下载的Qt版本不是最新版本，在官网下载最新版本后安装后，发现无法正常调用qmake,网上查询发现需要修改默认的配置文件，否则系统在调用某些qt命令行程序仍会调用旧版Qt。 需要修改/usr/lib/x86_64-linux-gnu/qtchooser/default.conf文件。 ls -l查看default.conf文件，发现文件是链接文件，链接的文件为/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-31T10:30:33.000Z">
+<meta property="og:updated_time" content="2017-11-01T02:26:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu安装官网新版Qt5.9.1配置">
 <meta name="twitter:description" content="ubuntu利用apt install下载的Qt版本不是最新版本，在官网下载最新版本后安装后，发现无法正常调用qmake,网上查询发现需要修改默认的配置文件，否则系统在调用某些qt命令行程序仍会调用旧版Qt。 需要修改/usr/lib/x86_64-linux-gnu/qtchooser/default.conf文件。 ls -l查看default.conf文件，发现文件是链接文件，链接的文件为/">
@@ -304,7 +304,7 @@
 <p>需要修改<code>/usr/lib/x86_64-linux-gnu/qtchooser/default.conf</code>文件。</p>
 <p><code>ls -l</code>查看default.conf文件，发现文件是链接文件，链接的文件为<code>/usr/share/qtchooser/qt4-x86_64-linux-gnu.conf default.conf</code></p>
 <p>修改该链接文件，修改目的链接文件为<code>/usr/share/qtchooser/qt5-x86_64-linux-gnu.conf default.conf</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo mv default.conf default.conf_bak</div><div class="line">ln -s /usr/share/qtchooser/qt5-x86_64-linux-gnu.conf default.conf default.conf</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo mv default.conf default.conf_bak</div><div class="line">sudo ln -s /usr/share/qtchooser/qt5-x86_64-linux-gnu.conf default.conf default.conf</div></pre></td></tr></table></figure>
 <p>打开新的default.conf文件，将<code>default.conf</code>的文件内容修改为自己安装的Qt路径，例如我安装的路径为<code>/home/liuhui/Qt5.9.1</code>,修改则如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/home/liuhui/Qt5.9.1/5.9.1/gcc_64/bin</div><div class="line">/home/liuhui/Qt5.9.1/5.9.1</div></pre></td></tr></table></figure>
 <p>修改完毕，即可正常调用qmake。</p>
