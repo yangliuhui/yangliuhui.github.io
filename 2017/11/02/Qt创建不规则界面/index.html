@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="Qt利用QLabel显示图片的默认操作是 12QImage image.load(&quot;test.jpeg&quot;);label.setPixmap(QPixmap::fromImage(image)); 但是在打开包含EXIF信息的图片时候（发生在用照相机等拍摄的图片）等，出现了图片发生了旋转的问题，原本的图片发生了90度的旋转。 那是因为在打开图片时候，QImage::load没有根据图片中EXIF信息">
+<meta name="description" content="Qt创建的界面默认都是包含标题栏的矩形框，这在实际项目开发中，自定义一些比较美观的界面中会显得比较单一，自定义的不规则界面效果如下：  实际上不规则中的界面只是将底层透明化，只显示底层上面的子部件而已。 设置底层透明只需要在窗口的构造函数中调用： 1this-&amp;gt;setAttribute(Qt::WA_TranslucentBackground, true); 隐藏标题栏： 1this-&amp;gt">
 <meta name="keywords" content="Qt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="QLabel显示包含EXIF数据图片">
-<meta property="og:url" content="http://yoursite.com/2017/10/31/QLabel显示包含EXIF数据图片/index.html">
+<meta property="og:title" content="Qt创建不规则界面">
+<meta property="og:url" content="http://yoursite.com/2017/11/02/Qt创建不规则界面/index.html">
 <meta property="og:site_name" content="独树山">
-<meta property="og:description" content="Qt利用QLabel显示图片的默认操作是 12QImage image.load(&quot;test.jpeg&quot;);label.setPixmap(QPixmap::fromImage(image)); 但是在打开包含EXIF信息的图片时候（发生在用照相机等拍摄的图片）等，出现了图片发生了旋转的问题，原本的图片发生了90度的旋转。 那是因为在打开图片时候，QImage::load没有根据图片中EXIF信息">
+<meta property="og:description" content="Qt创建的界面默认都是包含标题栏的矩形框，这在实际项目开发中，自定义一些比较美观的界面中会显得比较单一，自定义的不规则界面效果如下：  实际上不规则中的界面只是将底层透明化，只显示底层上面的子部件而已。 设置底层透明只需要在窗口的构造函数中调用： 1this-&amp;gt;setAttribute(Qt::WA_TranslucentBackground, true); 隐藏标题栏： 1this-&amp;gt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-31T03:45:10.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/11/02/Qt创建不规则界面/login_window.png">
+<meta property="og:updated_time" content="2017-11-02T12:53:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="QLabel显示包含EXIF数据图片">
-<meta name="twitter:description" content="Qt利用QLabel显示图片的默认操作是 12QImage image.load(&quot;test.jpeg&quot;);label.setPixmap(QPixmap::fromImage(image)); 但是在打开包含EXIF信息的图片时候（发生在用照相机等拍摄的图片）等，出现了图片发生了旋转的问题，原本的图片发生了90度的旋转。 那是因为在打开图片时候，QImage::load没有根据图片中EXIF信息">
+<meta name="twitter:title" content="Qt创建不规则界面">
+<meta name="twitter:description" content="Qt创建的界面默认都是包含标题栏的矩形框，这在实际项目开发中，自定义一些比较美观的界面中会显得比较单一，自定义的不规则界面效果如下：  实际上不规则中的界面只是将底层透明化，只显示底层上面的子部件而已。 设置底层透明只需要在窗口的构造函数中调用： 1this-&amp;gt;setAttribute(Qt::WA_TranslucentBackground, true); 隐藏标题栏： 1this-&amp;gt">
+<meta name="twitter:image" content="http://yoursite.com/2017/11/02/Qt创建不规则界面/login_window.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/31/QLabel显示包含EXIF数据图片/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/02/Qt创建不规则界面/"/>
 
 
 
 
 
-  <title>QLabel显示包含EXIF数据图片 | 独树山</title>
+  <title>Qt创建不规则界面 | 独树山</title>
   
 
 
@@ -233,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/31/QLabel显示包含EXIF数据图片/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/02/Qt创建不规则界面/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -250,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">QLabel显示包含EXIF数据图片</h1>
+          <h1 class="post-title" itemprop="name headline">Qt创建不规则界面</h1>
         
 
         <div class="post-meta">
@@ -262,8 +264,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-31T11:33:20+08:00">
-                2017-10-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T17:47:06+08:00">
+                2017-11-02
               </time>
             
 
@@ -300,11 +302,17 @@
       
 
       
-        <p>Qt利用QLabel显示图片的默认操作是</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">QImage image.load(<span class="string">"test.jpeg"</span>);</div><div class="line">label.setPixmap(QPixmap::fromImage(image));</div></pre></td></tr></table></figure>
-<p>但是在打开包含EXIF信息的图片时候（发生在用照相机等拍摄的图片）等，出现了图片发生了旋转的问题，原本的图片发生了90度的旋转。</p>
-<p>那是因为在打开图片时候，QImage::load没有根据图片中EXIF信息中的<code>Orientation</code>调整图片角度，打开包含EXIF数据的图片需要用<code>QImageReader</code>类</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function">QImageReader <span class="title">reader</span><span class="params">(<span class="string">"test.jpeg"</span>)</span></span>;</div><div class="line">reader.setAutoTransform(<span class="literal">true</span>);	<span class="comment">// 自动调整图片角度</span></div><div class="line">QImage image = reader.read();</div><div class="line">label-&gt;setPixmap(QPixmap::fromImage(image));</div></pre></td></tr></table></figure>
+        <p>Qt创建的界面默认都是包含标题栏的矩形框，这在实际项目开发中，自定义一些比较美观的界面中会显得比较单一，自定义的不规则界面效果如下：</p>
+<img src="/2017/11/02/Qt创建不规则界面/login_window.png" alt="不规则界面" title="不规则界面">
+<p>实际上不规则中的界面只是将底层透明化，只显示底层上面的子部件而已。</p>
+<p>设置底层透明只需要在窗口的构造函数中调用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>-&gt;setAttribute(Qt::WA_TranslucentBackground, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
+<p>隐藏标题栏：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>-&gt;setWindowFlags(Qt::FramelessWindowHint);</div></pre></td></tr></table></figure>
+<p>去除标题栏后恢鼠标按住移动窗口功能需要重载鼠标事件的三个函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// login_window.h</span></div><div class="line"><span class="keyword">protected</span>:</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">mousePressEvent</span><span class="params">(QMouseEvent *e)</span></span>;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">mouseMoveEvent</span><span class="params">(QMouseEvent *e)</span></span>;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">mouseReleaseEvent</span><span class="params">(QMouseEvent *e)</span></span>;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">  QPoint last; <span class="comment">// 鼠标位置坐标</span></div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// login_window.cpp</span></div><div class="line"><span class="keyword">void</span> login_widget::mousePressEvent(QMouseEvent *e) &#123; last = e-&gt;globalPos(); &#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> login_widget::mouseMoveEvent(QMouseEvent *e) &#123;</div><div class="line">  <span class="keyword">int</span> dx = e-&gt;globalX() - last.x();</div><div class="line">  <span class="keyword">int</span> dy = e-&gt;globalY() - last.y();</div><div class="line">  last = e-&gt;globalPos();</div><div class="line">  move(x() + dx, y() + dy);</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> login_widget::mouseReleaseEvent(QMouseEvent *e) &#123;</div><div class="line">  <span class="keyword">int</span> dx = e-&gt;globalX() - last.x();</div><div class="line">  <span class="keyword">int</span> dy = e-&gt;globalY() - last.y();</div><div class="line">  move(x() + dx, y() + dy);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/yangliuhui/qt_login" target="_blank" rel="external">项目源码:https://github.com/yangliuhui/qt_login</a></p>
 
       
     </div>
@@ -335,8 +343,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/27/Qt程序启动动画/" rel="next" title="Qt程序启动动画">
-                <i class="fa fa-chevron-left"></i> Qt程序启动动画
+              <a href="/2017/10/31/QLabel显示包含EXIF数据图片/" rel="next" title="QLabel显示包含EXIF数据图片">
+                <i class="fa fa-chevron-left"></i> QLabel显示包含EXIF数据图片
               </a>
             
           </div>
@@ -344,10 +352,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/02/Qt创建不规则界面/" rel="prev" title="Qt创建不规则界面">
-                Qt创建不规则界面 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
