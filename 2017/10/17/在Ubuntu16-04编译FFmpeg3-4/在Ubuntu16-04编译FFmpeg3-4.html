@@ -1,0 +1,28 @@
+<hr>
+<p>title: 在Ubuntu16.04编译FFmpeg3.4<br>date: 2017-10-17 21:32:58</p>
+<h2 id="tags-FFmpeg"><a href="#tags-FFmpeg" class="headerlink" title="tags: FFmpeg"></a>tags: FFmpeg</h2><p>本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。</p>
+<p>廖雪峰教程:</p>
+<p><a href="https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000">https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000</a></p>
+<p>官方链接:</p>
+<p><a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu">https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu</a></p>
+<p>废话不多说，直接开始。</p>
+<h3 id="升级系统"><a href="#升级系统" class="headerlink" title="升级系统"></a>升级系统</h3><pre><code class="sh">sudo apt update
+sudo apt upgrade
+</code></pre>
+<h3 id="安装以下安装包"><a href="#安装以下安装包" class="headerlink" title="安装以下安装包"></a>安装以下安装包</h3><pre><code class="sh">sudo apt install autoconf automake build-essential libass-dev libfreetype6-dev  libtheora-dev libtool libvorbis-dev pkg-config texinfo zlib1g-dev unzip cmake yasm libx264-dev libmp3lame-dev libopus-dev libsdl2-dev libva-dev libvdpau-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev libx265-dev libfdk-aac-dev libvpx-dev
+</code></pre>
+<h3 id="下载编译FFmpeg"><a href="#下载编译FFmpeg" class="headerlink" title="下载编译FFmpeg"></a>下载编译FFmpeg</h3><pre><code class="sh">wget http://ffmpeg.org/releases/ffmpeg-3.4.tar.bz2 
+
+tar xjvf ffmpeg-3.4.tar.bz2
+
+<span class="built_in">cd</span> ffmpeg-3.4
+
+./configure --<span class="built_in">enable</span>-shared --<span class="built_in">enable</span>-gpl --<span class="built_in">enable</span>-libass --<span class="built_in">enable</span>-libfdk-aac --<span class="built_in">enable</span>-libfreetype --<span class="built_in">enable</span>-libmp3lame --<span class="built_in">enable</span>-libopus --<span class="built_in">enable</span>-libtheora --<span class="built_in">enable</span>-libvorbis --<span class="built_in">enable</span>-libvpx --<span class="built_in">enable</span>-libx264 --<span class="built_in">enable</span>-libx265 --<span class="built_in">enable</span>-nonfree
+
+make
+
+sudo make install
+</code></pre>
+<p>至此，编译全部完成。</p>
+<hr>
+<p>ffmpeg生成的lib以及include路径<code>/usr/local/</code>内，后续将会介绍FFmpeg的简单使用。</p>
