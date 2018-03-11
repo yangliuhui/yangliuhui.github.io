@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="FFmpeg," />
+  <meta name="keywords" content="clang-tidy,linux," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程: https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接: https://trac.ffmpeg.org/wiki/Compilation">
-<meta name="keywords" content="FFmpeg">
+<meta name="description" content="介绍使用时，用-checks=选项来选择要运行的check，该选型用逗号分离每个check，如果在具体的check前面添加-号表示不使用该check。例如1$ clang-tidy test.cpp -checks=-*,clang-analyzer-*,-clang-analyzer-cplusplus* 该命令表示禁止所有默认的chekcs(-*), 使用clang-analyzer-*除了c">
+<meta name="keywords" content="clang-tidy,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Ubuntu16.04编译FFmpeg3.4">
-<meta property="og:url" content="http://yoursite.com/2017/10/17/在Ubuntu16-04编译FFmpeg3-4/index.html">
+<meta property="og:title" content="clang-tidy使用">
+<meta property="og:url" content="http://yoursite.com/2018/03/11/clang-tidy使用/index.html">
 <meta property="og:site_name" content="独树山">
-<meta property="og:description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程: https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接: https://trac.ffmpeg.org/wiki/Compilation">
+<meta property="og:description" content="介绍使用时，用-checks=选项来选择要运行的check，该选型用逗号分离每个check，如果在具体的check前面添加-号表示不使用该check。例如1$ clang-tidy test.cpp -checks=-*,clang-analyzer-*,-clang-analyzer-cplusplus* 该命令表示禁止所有默认的chekcs(-*), 使用clang-analyzer-*除了c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T04:57:05.000Z">
+<meta property="og:updated_time" content="2018-03-11T07:03:04.141Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Ubuntu16.04编译FFmpeg3.4">
-<meta name="twitter:description" content="本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。 廖雪峰教程: https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000 官方链接: https://trac.ffmpeg.org/wiki/Compilation">
+<meta name="twitter:title" content="clang-tidy使用">
+<meta name="twitter:description" content="介绍使用时，用-checks=选项来选择要运行的check，该选型用逗号分离每个check，如果在具体的check前面添加-号表示不使用该check。例如1$ clang-tidy test.cpp -checks=-*,clang-analyzer-*,-clang-analyzer-cplusplus* 该命令表示禁止所有默认的chekcs(-*), 使用clang-analyzer-*除了c">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/17/在Ubuntu16-04编译FFmpeg3-4/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/11/clang-tidy使用/"/>
 
 
 
 
 
-  <title>在Ubuntu16.04编译FFmpeg3.4 | 独树山</title>
+  <title>clang-tidy使用 | 独树山</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/17/在Ubuntu16-04编译FFmpeg3-4/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/11/clang-tidy使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">在Ubuntu16.04编译FFmpeg3.4</h1>
+          <h1 class="post-title" itemprop="name headline">clang-tidy使用</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T21:32:58+08:00">
-                2017-10-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-11T14:48:36+08:00">
+                2018-03-11
               </time>
             
 
@@ -300,18 +300,89 @@
       
 
       
-        <p>本教程是基于廖雪峰的教程，修改了部分库的版本，基于当前的最新版ffmpeg3.4，在ubuntu16.04上亲测成功。</p>
-<p>廖雪峰教程:</p>
-<p><a href="https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000" target="_blank" rel="external">https://www.liaoxuefeng.com/article/001456198314370db046cbe5e5a45388bf3ade4bc2c5cb0000</a></p>
-<p>官方链接:</p>
-<p><a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu" target="_blank" rel="external">https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu</a></p>
-<p>废话不多说，直接开始。</p>
-<h3 id="升级系统"><a href="#升级系统" class="headerlink" title="升级系统"></a>升级系统</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt update</div><div class="line">sudo apt upgrade</div></pre></td></tr></table></figure>
-<h3 id="安装以下安装包"><a href="#安装以下安装包" class="headerlink" title="安装以下安装包"></a>安装以下安装包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt install autoconf automake build-essential libass-dev libfreetype6-dev  libtheora-dev libtool libvorbis-dev pkg-config texinfo zlib1g-dev unzip cmake yasm libx264-dev libmp3lame-dev libopus-dev libsdl2-dev libva-dev libvdpau-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev libx265-dev libfdk-aac-dev libvpx-dev</div></pre></td></tr></table></figure>
-<h3 id="下载编译FFmpeg"><a href="#下载编译FFmpeg" class="headerlink" title="下载编译FFmpeg"></a>下载编译FFmpeg</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">wget http://ffmpeg.org/releases/ffmpeg-3.4.tar.bz2 </div><div class="line"></div><div class="line">tar xjvf ffmpeg-3.4.tar.bz2</div><div class="line"></div><div class="line">cd ffmpeg-3.4</div><div class="line"></div><div class="line">./configure \                                                 </div><div class="line">  --enable-shared \</div><div class="line">  --enable-gpl \</div><div class="line">  --enable-libass \</div><div class="line">  --enable-libfdk-aac \</div><div class="line">  --enable-libfreetype \</div><div class="line">  --enable-libmp3lame \</div><div class="line">  --enable-libopus \</div><div class="line">  --enable-libtheora \</div><div class="line">  --enable-libvorbis \</div><div class="line">  --enable-libvpx \</div><div class="line">  --enable-libx264 \</div><div class="line">  --enable-libx265 \</div><div class="line">  --enable-nonfree</div><div class="line"></div><div class="line">make</div><div class="line"></div><div class="line">sudo make install</div></pre></td></tr></table></figure>
-<p>至此，编译全部完成。</p>
-<hr>
-<p>ffmpeg生成的lib以及include路径<code>/usr/local/</code>内，后续将会介绍FFmpeg的简单使用。</p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>使用时，用<code>-checks=</code>选项来选择要运行的check，该选型用逗号分离每个check，如果在具体的check前面添加<code>-</code>号表示不使用该check。例如<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> clang-tidy test.cpp -checks=-*,clang-analyzer-*,-clang-analyzer-cplusplus*</div></pre></td></tr></table></figure></p>
+<p>该命令表示禁止所有默认的chekcs(<code>-*</code>), 使用<code>clang-analyzer-*</code>除了<code>clang-analyzer-cplusplus*</code>以外的所有check</p>
+<table>
+<thead>
+<tr>
+<th>Name prefix</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>android-</td>
+<td>Checks related to Android.</td>
+</tr>
+<tr>
+<td>boost-</td>
+<td>Checks related to Boost library.</td>
+</tr>
+<tr>
+<td>bugprone-</td>
+<td>Checks that target bugprone code constructs.</td>
+</tr>
+<tr>
+<td>cert-</td>
+<td>Checks related to CERT Secure Coding Guidelines.</td>
+</tr>
+<tr>
+<td>cppcoreguidelines-</td>
+<td>Checks related to C++ Core Guidelines.</td>
+</tr>
+<tr>
+<td>clang-analyzer-</td>
+<td>Clang Static Analyzer checks.</td>
+</tr>
+<tr>
+<td>fuchsia-</td>
+<td>Checks related to Fuchsia coding conventions.</td>
+</tr>
+<tr>
+<td>google-</td>
+<td>Checks related to Google coding conventions.</td>
+</tr>
+<tr>
+<td>hicpp-</td>
+<td>Checks related to High Integrity C++ Coding Standard.</td>
+</tr>
+<tr>
+<td>llvm-</td>
+<td>Checks related to the LLVM coding conventions.</td>
+</tr>
+<tr>
+<td>misc-</td>
+<td>Checks that we didn’t have a better category for.</td>
+</tr>
+<tr>
+<td>modernize-</td>
+<td>Checks that advocate usage of modern (currently “modern” means “C++11”) language constructs.</td>
+</tr>
+<tr>
+<td>mpi-</td>
+<td>Checks related to MPI (Message Passing Interface).</td>
+</tr>
+<tr>
+<td>objc-</td>
+<td>Checks related to Objective-C coding conventions.</td>
+</tr>
+<tr>
+<td>performance-</td>
+<td>Checks that target performance-related issues.</td>
+</tr>
+<tr>
+<td>portability-</td>
+<td>Checks that target portability-related issues that don’t relate to any particular coding style.</td>
+</tr>
+<tr>
+<td>readability-</td>
+<td>Checks that target readability-related issues that don’t relate to any particular coding style.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>ubuntu下使用以下命令下载安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo apt install clang-tidy-5.0</div></pre></td></tr></table></figure>
+<h2 id="cmake中使用"><a href="#cmake中使用" class="headerlink" title="cmake中使用"></a>cmake中使用</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#clang-tidy</span></div><div class="line"><span class="keyword">if</span> (NOT WIN32)</div><div class="line">  <span class="keyword">set</span>(CLANG-TIDY-PATH <span class="string">"/usr/bin/clang-tidy-5.0"</span>)</div><div class="line"><span class="keyword">endif</span>()</div><div class="line"><span class="keyword">if</span> (EXISTS <span class="string">"$&#123;CLANG-TIDY-PATH&#125;"</span>)</div><div class="line">  <span class="keyword">set</span>(CMAKE_CXX_CLANG_TIDY <span class="string">"$&#123;CLANG-TIDY-PATH&#125;"</span> <span class="string">"-checks=*"</span>)</div><div class="line"><span class="keyword">endif</span>()</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -329,7 +400,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/FFmpeg/" rel="tag"># FFmpeg</a>
+            <a href="/tags/clang-tidy/" rel="tag"># clang-tidy</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
         </div>
       
@@ -342,8 +415,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/17/在Ubuntu16-04编译FFmpeg3-4/在Ubuntu16-04编译FFmpeg3-4/" rel="next" title="在Ubuntu16.04编译FFmpeg3.4">
-                <i class="fa fa-chevron-left"></i> 在Ubuntu16.04编译FFmpeg3.4
+              <a href="/2018/01/04/Qt程序国际化/" rel="next" title="Qt程序国际化">
+                <i class="fa fa-chevron-left"></i> Qt程序国际化
               </a>
             
           </div>
@@ -351,10 +424,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/20/ubuntu安装官网新版Qt5-9-1配置/" rel="prev" title="ubuntu安装官网新版Qt5.9.1配置">
-                ubuntu安装官网新版Qt5.9.1配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -481,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#升级系统"><span class="nav-number">1.</span> <span class="nav-text">升级系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装以下安装包"><span class="nav-number">2.</span> <span class="nav-text">安装以下安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载编译FFmpeg"><span class="nav-number">3.</span> <span class="nav-text">下载编译FFmpeg</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmake中使用"><span class="nav-number">3.</span> <span class="nav-text">cmake中使用</span></a></li></ol></div>
             
 
           </div>
