@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Qt," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在qt中，可以使用Q_DECLARE_PRIVATE配合Q_D来实现类似C++中PIMPL123456789101112131415161718192021222324252627282930313233// MainWindow.h#ifndef MAINWINDOW_H#define MAINWINDOW_H#include &amp;lt;QMainWindow&amp;gt;#include &amp;lt;QS">
+<meta name="keywords" content="Qt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt中的Q_D以及Q_Q宏定义">
+<meta property="og:url" content="http://yoursite.com/2018/04/12/Qt中的Q-D以及Q-Q宏定义/index.html">
+<meta property="og:site_name" content="独树山">
+<meta property="og:description" content="在qt中，可以使用Q_DECLARE_PRIVATE配合Q_D来实现类似C++中PIMPL123456789101112131415161718192021222324252627282930313233// MainWindow.h#ifndef MAINWINDOW_H#define MAINWINDOW_H#include &amp;lt;QMainWindow&amp;gt;#include &amp;lt;QS">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-11T16:08:29.712Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Qt中的Q_D以及Q_Q宏定义">
+<meta name="twitter:description" content="在qt中，可以使用Q_DECLARE_PRIVATE配合Q_D来实现类似C++中PIMPL123456789101112131415161718192021222324252627282930313233// MainWindow.h#ifndef MAINWINDOW_H#define MAINWINDOW_H#include &amp;lt;QMainWindow&amp;gt;#include &amp;lt;QS">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/12/Qt中的Q-D以及Q-Q宏定义/"/>
+
+
+
+
+
+  <title>Qt中的Q_D以及Q_Q宏定义 | 独树山</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">独树山</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/Qt中的Q-D以及Q-Q宏定义/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="独树山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Qt中的Q_D以及Q_Q宏定义</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-12T00:06:13+08:00">
+                2018-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在qt中，可以使用<code>Q_DECLARE_PRIVATE</code>配合<code>Q_D</code>来实现类似C++中<code>PIMPL</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// MainWindow.h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MAINWINDOW_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAINWINDOW_H</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMainWindow&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QScopedPointer&gt;</span></span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainWindowPrivate</span>;</span></div><div class="line"><span class="keyword">namespace</span> Ui &#123;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span>;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span> :</span> <span class="keyword">public</span> QMainWindow &#123;</div><div class="line">  Q_OBJECT</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">  <span class="function"><span class="keyword">explicit</span> <span class="title">MainWindow</span><span class="params">(QWidget *parent = <span class="literal">nullptr</span>)</span></span>;</div><div class="line">  ~MainWindow();</div><div class="line"></div><div class="line">  QString tag&#123;<span class="string">"MainWindow"</span>&#125;;</div><div class="line"><span class="keyword">public</span> slots:</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">ClickedGetQPtrTag</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">ClickedGetDPtrTag</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="keyword">protected</span>:</div><div class="line">  <span class="keyword">const</span> QScopedPointer&lt;MainWindowPrivate&gt; d_ptr;</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">  Ui::MainWindow *ui&#123;<span class="literal">nullptr</span>&#125;;</div><div class="line"></div><div class="line">  Q_DECLARE_PRIVATE(MainWindow)</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// MAINWINDOW_H</span></span></div></pre></td></tr></table></figure></p>
+<p>Q_DECLARE_PRIVATE宏定义展开后为：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> Q_DECLARE_PRIVATE(Class)                                               \</span></div><div class="line">  <span class="keyword">inline</span> Class##<span class="function">Private *<span class="title">d_func</span><span class="params">()</span> </span>&#123;                                            \</div><div class="line">    <span class="keyword">return</span> <span class="keyword">reinterpret_cast</span>&lt;Class##Private *&gt;(qGetPtrHelper(d_ptr));           \</div><div class="line">  &#125;                                                                            \</div><div class="line">  <span class="keyword">inline</span> <span class="keyword">const</span> Class##<span class="function">Private *<span class="title">d_func</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;                                \</div><div class="line">    <span class="keyword">return</span> <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">const</span> Class##Private *&gt;(qGetPtrHelper(d_ptr));     \</div><div class="line">  &#125;                                                                            \</div><div class="line">  <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Class</span>##<span class="title">Private</span>;</span></div></pre></td></tr></table></figure></p>
+<p>则代码中第29行展开后为：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> Q_DECLARE_PRIVATE(MainWindow)                                          \</span></div><div class="line">  <span class="function"><span class="keyword">inline</span> MainWindowPrivate *<span class="title">d_func</span><span class="params">()</span> </span>&#123;                                         \</div><div class="line">    <span class="keyword">return</span> <span class="keyword">reinterpret_cast</span>&lt;MainWindowPrivate *&gt;(qGetPtrHelper(d_ptr));        \</div><div class="line">  &#125;                                                                            \</div><div class="line">  <span class="function"><span class="keyword">inline</span> <span class="keyword">const</span> MainWindowPrivate *<span class="title">d_func</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;                             \</div><div class="line">    <span class="keyword">return</span> <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">const</span> MainWindowPrivate *&gt;(qGetPtrHelper(d_ptr));  \</div><div class="line">  &#125;                                                                            \</div><div class="line">  <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">MainWindowPrivate</span>;</span></div></pre></td></tr></table></figure></p>
+<p>声明了两个返回<code>d_ptr</code>的指针的函数<code>d_func</code>，以及一个友元类MainWindowPrivate。<br>第6行的前置声明也有固定的名称组合<strong>class+Private</strong>，因为在宏定义中已经规定了声明的类名称<br>同样，第25行的d_ptr指针也是固定的名称，并且用了智能指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// MainWindow.cpp</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mainwindow.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ui_mainwindow.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainWindowPrivate</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">  MainWindowPrivate(MainWindow *q) : q_ptr(q) &#123;&#125;</div><div class="line">  ~MainWindowPrivate() = <span class="keyword">default</span>;</div><div class="line">  MainWindow *<span class="keyword">const</span> q_ptr;</div><div class="line"></div><div class="line">  <span class="function">QString <span class="title">GetQptrTag</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> q_ptr-&gt;tag; &#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">  Q_DECLARE_PUBLIC(MainWindow)</div><div class="line"></div><div class="line">  QString tag&#123;<span class="string">"MainWindowPrivate"</span>&#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">MainWindow::MainWindow(QWidget *parent)</div><div class="line">    : QMainWindow(parent), d_ptr(<span class="keyword">new</span> MainWindowPrivate(<span class="keyword">this</span>)),</div><div class="line">      ui(<span class="keyword">new</span> Ui::MainWindow) &#123;</div><div class="line">  ui-&gt;setupUi(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">  connect(ui-&gt;btn_1, &amp;QPushButton::clicked, <span class="keyword">this</span>,</div><div class="line">          &amp;MainWindow::ClickedGetQPtrTag);</div><div class="line">  connect(ui-&gt;btn_2, &amp;QPushButton::clicked, <span class="keyword">this</span>,</div><div class="line">          &amp;MainWindow::ClickedGetDPtrTag);</div><div class="line">&#125;</div><div class="line"></div><div class="line">MainWindow::~MainWindow() &#123; <span class="keyword">delete</span> ui; &#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> MainWindow::ClickedGetQPtrTag() &#123;</div><div class="line">  Q_D(<span class="keyword">const</span> MainWindow);</div><div class="line">  QString tag = d-&gt;GetQptrTag();</div><div class="line">  ui-&gt;label-&gt;setText(tag);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> MainWindow::ClickedGetDPtrTag() &#123;</div><div class="line">  Q_D(<span class="keyword">const</span> MainWindow);</div><div class="line">  QString tag = d-&gt;tag;</div><div class="line">  ui-&gt;label-&gt;setText(tag);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>MainWindow.h</code>中的前置声明在cpp实现，实现中需要注意的是<code>Q_DECLARE_PUBLIC</code>以及<code>q_ptr</code><br>Q_DECLARE_PUBLIC的展开式为<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> Q_DECLARE_PUBLIC(Class)                                                \</span></div><div class="line">  <span class="function"><span class="keyword">inline</span> Class *<span class="title">q_func</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;Class *&gt;(q_ptr); &#125;               \</div><div class="line">  <span class="function"><span class="keyword">inline</span> <span class="keyword">const</span> Class *<span class="title">q_func</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;                                         \</div><div class="line">    <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;<span class="keyword">const</span> Class *&gt;(q_ptr);                                  \</div><div class="line">  &#125;                                                                            \</div><div class="line">  <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">Class</span>;</span></div></pre></td></tr></table></figure></p>
+<p>所以<code>Q_DECLARE_PUBLIC(MainWindow)</code>展开后为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#define Q_DECLARE_PUBLIC(MainWindow)                                           \</div><div class="line">  inline MainWindow *q_func() &#123; return static_cast&lt;MainWindow *&gt;(q_ptr); &#125;     \</div><div class="line">  inline const MainWindow *q_func() const &#123;                                    \</div><div class="line">    return static_cast&lt;const MainWindow *&gt;(q_ptr);                             \</div><div class="line">  &#125;                                                                            \</div><div class="line">  friend class MainWindow;</div></pre></td></tr></table></figure></p>
+<p>所以，需要在类中声明一个固定名称<code>q_ptr</code>的指针</p>
+<p>在MainWindow中，则需要用到<code>Q_D</code>宏定义，展开后则为<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> Q_D(Class) Class##Private * const d = d_func()</span></div></pre></td></tr></table></figure></p>
+<p>则<code>Q_D(const MainWindow)</code>展开后为:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MainWindowPrivate *<span class="keyword">const</span> d = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">const</span> MainWindowPrivate *&gt;(qGetPtrHelper(d_ptr));</div></pre></td></tr></table></figure></p>
+<p>所以在使用<code>Q_D(const MainWindow)</code>后，则可以用d指针对封装在<code>MainWindowPrivate</code>内的数据进行读取或者操作<br><strong>注意，如果需要修改数据，则不应该增加<code>const</code>，应该为<code>Q_D(const MainWindow)</code></strong></p>
+<p>在<code>MainWindowPrivate</code>中，则可以使用<code>Q_Q</code>来获取<code>Mainwindow</code>的指针<br><code>Q_Q</code>的展开为:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> Q_Q(Class) Class * const q = q_func()</span></div></pre></td></tr></table></figure></p>
+<p>声明后则可以使用<code>q</code>来访问<code>Mainwindow</code>中的数据</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Qt/" rel="tag"># Qt</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/11/clang-tidy使用/" rel="next" title="clang-tidy使用">
+                <i class="fa fa-chevron-left"></i> clang-tidy使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTQ0MS84MDA1"></div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
